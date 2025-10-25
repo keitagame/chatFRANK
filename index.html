@@ -140,21 +140,21 @@
         div.textContent = document.getElementById("noframe").value;
         div.className = "q";
         div.style.color = "#fff";
-        document.getElementById("result").style.height = height - 300 + "px";
+        document.getElementById("result").style.height = height - 250 + "px";
         // 3. DOMに追加
         document.getElementById("result").appendChild(div);
 
         const prompt = document.getElementById("noframe").value;
-        //const res = await fetch("http://localhost:8000/generate", {
-        //method: "POST",
-        //headers: { "Content-Type": "application/json" },
-        //body: JSON.stringify({ prompt }),
-        //});
-        //const data = await res.json();
+        const res = await fetch("http://localhost:8000/generate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt }),
+        });
+        const data = await res.json();
         const divtext = document.createElement("div");
 
         // 2. 属性や内容を設定
-        divtext.textContent = prompt;
+        divtext.textContent = data;
         divtext.className = "ooo";
         divtext.style.color = "#fff";
 
