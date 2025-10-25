@@ -145,14 +145,21 @@
         document.getElementById("result").appendChild(div);
 
         const prompt = document.getElementById("noframe").value;
-        const res = await fetch("http://localhost:8000/generate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt }),
-        });
-        const data = await res.json();
-        const divtext = document.createElement("div");
-
+        try {
+            const res = await fetch("http://localhost:8000/generate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ prompt }),
+            });
+            const data = await res.json();
+            const divtext = document.createElement("div");
+        } catch (err) {
+            const errorDiv = document.createElement("div");
+            errorDiv.textContent = "エラー: " + err.message;
+            errorDiv.style.color = "red";
+            document.getElementById("noframe").value = "";
+            result.appendChild(errorDiv);
+        }
         // 2. 属性や内容を設定
         divtext.textContent = data;
         divtext.className = "ooo";
