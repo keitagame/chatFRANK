@@ -7,6 +7,15 @@
           body{
               background:#000000
           }
+          .chat{
+            
+            background:#121212;
+            margin-left:100px;
+            margin-right:100px;
+            
+            
+            
+          }
           .prompt{
               display:flex;
               background:#121212;
@@ -62,19 +71,38 @@
   </head>
   <body>
     <img src="gene.svg" width="40px" height="40px"/>
-    <h1 class="frank-footer">Frank<img src="logo.svg" class="logo" /></h1>
+    <h1 class="frank-footer" id="frank">Frank<img src="logo.svg" class="logo" /></h1>
+    <div class="chat"></div>
     <div class="prompt">
       <textarea
+        id="noframe"
         class="no-frame"
         type="text"
         placeholder="何か知りたいことはありませんか？"
       ></textarea>
-      <img src="send.svg" class="send" />
+      <img src="send.svg" class="send" id="send"/>
     </div>
     <h1></h1>
-    <div class ="d"
+    <div class ="d" id="d"
       >Frank
       にメッセージを送ることで、利用規約およびプライバシーポリシーに同意したことになります。</div
     >
+    <script>
+    const d = document.getElementById("d");
+    const frank = document.getElementById("frank")
+    function runAction() {
+      d.style.display = "none";
+      frank.style.display = "none";
+    }
+    document.getElementById("send").addEventListener("click", runAction);
+
+    // テキストエリアでEnter
+    document.getElementById("noframe").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault(); // 改行を防ぎたい場合
+        runAction();
+      }
+    });
+    </script>
   </body>
 </html>
