@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>chatfrank</title>
+    <style>
+          body{
+              background:#000000
+          }
+          .prompt{
+              display:flex;
+              background:#121212;
+              margin-left:100px;
+              margin-right:100px;
+              margin-top:50px;
+              border-radius:30px;
+              border:1px solid rgb(59, 59, 59)
+          }
+          .no-frame {
+              font-size:15px;
+              resize: none;
+              width: 100%;
+              height:100%;
+              color:white;
+              padding:20px;
+              border: none;           /* 枠線を消す */
+              outline: none;          /* クリック時の青枠を消す（後述のアクセシビリティ注意） */
+              background: transparent;/* 背景も消したい場合 */
+              box-shadow: none;       /* 影による枠見えを消す */
+              appearance: none;       /* 各ブラウザのデフォルト外観を無効化 */
+              -webkit-appearance: none; /* iOS/Safari対策 */
+              box-sizing: border-box;
+          }
+          .frank-footer {
+                text-align: center;
+                margin-bottom: 0px;
+
+                font-optical-sizing: auto;
+                font-weight: 500;
+                margin-top: 0px;
+                font-size: clamp(4rem, 7vw, 8rem);
+                color: #ffffff;
+
+           }
+      .logo{
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+      }
+      .send{
+        margin:7px;
+        margin-top:50px;
+        width: 40px;
+        height:40px;
+      }
+      .d{
+        text-align:center;
+        width:100%;
+        color:#5e5e5e;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="gene.svg" width="40px" height="40px"/>
+    <h1 class="frank-footer">Frank<img src="logo.svg" class="logo" /></h1>
+    <div class="prompt">
+      <textarea
+        class="no-frame"
+        type="text"
+        placeholder="何か知りたいことはありませんか？"
+      ></textarea>
+      <img src="send.svg" class="send" />
+    </div>
+    <h1></h1>
+    <div class ="d"
+      >Frank
+      にメッセージを送ることで、利用規約およびプライバシーポリシーに同意したことになります。</div
+    >
+  </body>
+</html>
