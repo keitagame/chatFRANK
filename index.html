@@ -40,6 +40,19 @@
                     -webkit-appearance: none; /* iOS/Safari対策 */
                     box-sizing: border-box;
                 }
+                .lo{
+display:flex;
+}
+                .frank{
+                    margin-left:10px;
+                    margin-bottom: 0px;
+
+                      font-optical-sizing: auto;
+                      font-weight: 500;
+                      margin-top: 0px;
+                      font-size: clamp(2rem, 3vw, 3rem);
+                      color: #ffffff;
+                    }
                 .frank-footer {
                       text-align: center;
                       margin-bottom: 0px;
@@ -83,7 +96,13 @@
     </style>
   </head>
   <body>
+    <div class="lo">
     <img src="gene.svg" width="40px" height="40px" />
+    <h1 class="frank">
+      Frank<img src="logo.svg" class="logo" />
+    </h1>
+    
+    </div>
     <h1 class="frank-footer" id="frank">
       Frank<img src="logo.svg" class="logo" />
     </h1>
@@ -123,13 +142,21 @@
         document.getElementById("result").appendChild(div);
 
         const prompt = document.getElementById("noframe").value;
-        const res = await fetch("http://localhost:8000/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt }),
-        });
-        const data = await res.json();
-        document.getElementById("result").innerText = data.response;
+        //const res = await fetch("http://localhost:8000/generate", {
+          //method: "POST",
+          //headers: { "Content-Type": "application/json" },
+          //body: JSON.stringify({ prompt }),
+        //});
+        //const data = await res.json();
+        const divtext = document.createElement("div");
+        
+        // 2. 属性や内容を設定
+        divtext.textContent = prompt;
+        divtext.className = "ooo";
+        divtext.style.color = "#fff";
+        
+        document.getElementById("result").appendChild(divtext);
+        
       }
 
       document.getElementById("send").addEventListener("click", runAction);
