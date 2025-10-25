@@ -4,125 +4,128 @@
     <meta charset="UTF-8" />
     <title>chatfrank</title>
     <style>
-                body{
-                    background:#000000
-                }
-                .chat{
+        body{
+            background:#000000
+        }
+        .chat{
 
-                  background:#000000;
-                  margin-left:100px;
-                  margin-right:100px;
+            background:#000000;
+            
 
-                 overflow:scroll;
+            overflow:scroll;
 
-                }
-                .prompt{
-                    display:flex;
-                    background:#121212;
-                    margin-left:100px;
-                    margin-right:100px;
-                    margin-top:50px;
-                    border-radius:30px;
-                    border:1px solid rgb(59, 59, 59)
-                }
-                .no-frame {
-                    font-size:15px;
-                    resize: none;
-                    width: 100%;
-                    height:100%;
-                    color:white;
-                    padding:20px;
-                    border: none;           /* 枠線を消す */
-                    outline: none;          /* クリック時の青枠を消す（後述のアクセシビリティ注意） */
-                    background: transparent;/* 背景も消したい場合 */
-                    box-shadow: none;       /* 影による枠見えを消す */
-                    appearance: none;       /* 各ブラウザのデフォルト外観を無効化 */
-                    -webkit-appearance: none; /* iOS/Safari対策 */
-                    box-sizing: border-box;
-                }
-                .lo{
-display:flex;
-}
-                .frank{
-                    margin-left:10px;
-                    margin-bottom: 0px;
+        }
+        .prompt{
+            display:flex;
+            background:#121212;
+            justify-content: center; /* 横方向中央 */
+            align-items: center;     /* 縦方向中央 */
+            margin-top:50px;
+            border-radius:30px;
+            border:1px solid rgb(59, 59, 59)
+        }
+        .no-frame {
+            font-size:15px;
+            resize: none;
+            width: 100%;
+            height:100%;
+            color:white;
+            padding-top: 10px;
+            padding-bottom:20px;
+            padding-left:20px;
+            border: none;           /* 枠線を消す */
+            outline: none;          /* クリック時の青枠を消す（後述のアクセシビリティ注意） */
+            background: transparent;/* 背景も消したい場合 */
+            box-shadow: none;       /* 影による枠見えを消す */
+            appearance: none;       /* 各ブラウザのデフォルト外観を無効化 */
+            -webkit-appearance: none; /* iOS/Safari対策 */
+            box-sizing: border-box;
+        }
+        .lo{
+            display:flex;
+        }
+        .frank{
+            margin-left:10px;
+            margin-bottom: 0px;
 
-                      font-optical-sizing: auto;
-                      font-weight: 500;
-                      margin-top: 0px;
-                      font-size: clamp(2rem, 3vw, 3rem);
-                      color: #ffffff;
-                    }
-                .frank-footer {
-                      text-align: center;
-                      margin-bottom: 0px;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            margin-top: 0px;
+            font-size: clamp(2rem, 3vw, 3rem);
+            color: #ffffff;
+        }
+        .frank-footer {
+            text-align: center;
+            margin-bottom: 0px;
 
-                      font-optical-sizing: auto;
-                      font-weight: 500;
-                      margin-top: 0px;
-                      font-size: clamp(4rem, 7vw, 8rem);
-                      color: #ffffff;
-                  }
-                 .q{
-      margin-top:10px;
-                  margin-left: auto;
-        margin-right: 0;
-        width: fit-content; /* 必要に応じて */
-                  text-align:right;
-                  border-radius:30px;
-                    border:1px solid rgb(59, 59, 59);
-                  background:#121212;
-                  padding:10px;
-                 }
+            font-optical-sizing: auto;
+            font-weight: 500;
+            margin-top: 0px;
+            font-size: clamp(4rem, 7vw, 8rem);
+            color: #ffffff;
+        }
+        .q{
+            margin-top:10px;
+            margin-left: auto;
+            margin-right: 0;
+            width: fit-content; /* 必要に応じて */
+            text-align:right;
+            border-radius:30px;
+            border:1px solid rgb(59, 59, 59);
+            background:#121212;
+            padding:10px;
+        }
 
-            .logo{
-              width: 1em;
-              height: 1em;
-              vertical-align: middle;
-            }
-            .send{
+        .logo{
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+        }
+        .send{
 
-              margin:7px;
-              margin-top:50px;
-              width: 40px;
-              height:40px;
-            }
-            .d{
+            margin:7px;
+            margin-top:50px;
+            width: 40px;
+            height:40px;
+        }
+        .d{
 
-              text-align:center;
-              width:100%;
-              color:#5e5e5e;
-            }
+            text-align:center;
+            width:100%;
+            color:#5e5e5e;
+        }
+        .room{
+            margin: 0 auto;
+            width: 50em;
+        }
     </style>
   </head>
   <body>
     <div class="lo">
-    <img src="gene.svg" width="40px" height="40px" />
-    <h1 class="frank">
-      Frank<img src="logo.svg" class="logo" />
-    </h1>
-    
+      <h1 class="frank">Frank<img src="logo.svg" class="logo" /></h1>
     </div>
-    <h1 class="frank-footer" id="frank">
-      Frank<img src="logo.svg" class="logo" />
-    </h1>
-    <div class="chat" id="result"></div>
-    <div class="prompt">
-      <textarea
-        id="noframe"
-        class="no-frame"
-        type="text"
-        placeholder="何か知りたいことはありませんか？"
-      ></textarea>
+    <div class="room">
+      <h1 class="frank-footer" id="frank">
+        Frank<img src="logo.svg" class="logo" />
+      </h1>
+      <div class="chat" id="result"></div>
+      <div class="prompt">
+        <textarea
+          id="noframe"
+          class="no-frame"
+          type="text"
+          placeholder="何か知りたいことはありませんか？"
+        ></textarea>
 
-      <img src="send.svg" class="send" id="send" />
-    </div>
-    <h1></h1>
+        <img src="send.svg" class="send" id="send" />
+      </div>
+      <h1></h1>
 
-    <h1></h1>
-    <div class="d" id="d">
-      frank
-      にメッセージを送ることで、利用規約およびプライバシーポリシーに同意したことになります。
+      <h1></h1>
+      <div class="d" id="d">
+        frank
+        にメッセージを送ることで、利用規約およびプライバシーポリシーに同意したことになります。
+      </div>
     </div>
     <script>
       const d = document.getElementById("d");
@@ -143,20 +146,20 @@ display:flex;
 
         const prompt = document.getElementById("noframe").value;
         //const res = await fetch("http://localhost:8000/generate", {
-          //method: "POST",
-          //headers: { "Content-Type": "application/json" },
-          //body: JSON.stringify({ prompt }),
+        //method: "POST",
+        //headers: { "Content-Type": "application/json" },
+        //body: JSON.stringify({ prompt }),
         //});
         //const data = await res.json();
         const divtext = document.createElement("div");
-        
+
         // 2. 属性や内容を設定
         divtext.textContent = prompt;
         divtext.className = "ooo";
         divtext.style.color = "#fff";
-        
+
         document.getElementById("result").appendChild(divtext);
-        
+        document.getElementById("noframe").value = "";
       }
 
       document.getElementById("send").addEventListener("click", runAction);
@@ -165,7 +168,9 @@ display:flex;
       document
         .getElementById("noframe")
         .addEventListener("keydown", function (e) {
+          if(e.shiftKey && e.key === "Enter"){return;}
           if (e.key === "Enter") {
+            
             e.preventDefault(); // 改行を防ぎたい場合
             runAction();
           }
