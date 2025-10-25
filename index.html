@@ -9,7 +9,7 @@
           }
           .chat{
             
-            background:#121212;
+            background:#000000;
             margin-left:100px;
             margin-right:100px;
             
@@ -49,20 +49,29 @@
                 margin-top: 0px;
                 font-size: clamp(4rem, 7vw, 8rem);
                 color: #ffffff;
-
+            }
+           .q{
+            text-align:right;
+            border-radius:30px;
+              border:1px solid rgb(59, 59, 59);
+            background:#121212;
+            padding:10px;
            }
+         
       .logo{
         width: 1em;
         height: 1em;
         vertical-align: middle;
       }
       .send{
+
         margin:7px;
         margin-top:50px;
         width: 40px;
         height:40px;
       }
       .d{
+        
         text-align:center;
         width:100%;
         color:#5e5e5e;
@@ -72,7 +81,7 @@
   <body>
     <img src="gene.svg" width="40px" height="40px"/>
     <h1 class="frank-footer" id="frank">Frank<img src="logo.svg" class="logo" /></h1>
-    <div class="chat"></div>
+    <div class="chat" id="result"></div>
     <div class="prompt">
       <textarea
         id="noframe"
@@ -84,16 +93,36 @@
     </div>
     <h1></h1>
     <div class ="d" id="d"
-      >Frank
+      >frank
       にメッセージを送ることで、利用規約およびプライバシーポリシーに同意したことになります。</div
     >
     <script>
     const d = document.getElementById("d");
     const frank = document.getElementById("frank")
-    function runAction() {
+    async function runAction() {
       d.style.display = "none";
       frank.style.display = "none";
+      // 1. 要素を作成
+    const div = document.createElement("div");
+
+    // 2. 属性や内容を設定
+    div.textContent = document.getElementById("noframe").value;
+    div.className = "q";
+    div.style.color = "#fff";
+
+    // 3. DOMに追加
+    document.getElementById("result").appendChild(div);
+
+      const prompt = document.getElementById("noframe").value;
+      const res = await fetch("http://localhost:8000/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt })
+      });
+      const data = await res.json();
+      document.getElementById("result").innerText = data.response;
     }
+    
     document.getElementById("send").addEventListener("click", runAction);
 
     // テキストエリアでEnter
