@@ -4,83 +4,89 @@
     <meta charset="UTF-8" />
     <title>chatfrank</title>
     <style>
-          body{
-              background:#000000
-          }
-          .chat{
-            
-            background:#000000;
-            margin-left:100px;
-            margin-right:100px;
-            
-            
-            
-          }
-          .prompt{
-              display:flex;
-              background:#121212;
-              margin-left:100px;
-              margin-right:100px;
-              margin-top:50px;
-              border-radius:30px;
-              border:1px solid rgb(59, 59, 59)
-          }
-          .no-frame {
-              font-size:15px;
-              resize: none;
-              width: 100%;
-              height:100%;
-              color:white;
-              padding:20px;
-              border: none;           /* 枠線を消す */
-              outline: none;          /* クリック時の青枠を消す（後述のアクセシビリティ注意） */
-              background: transparent;/* 背景も消したい場合 */
-              box-shadow: none;       /* 影による枠見えを消す */
-              appearance: none;       /* 各ブラウザのデフォルト外観を無効化 */
-              -webkit-appearance: none; /* iOS/Safari対策 */
-              box-sizing: border-box;
-          }
-          .frank-footer {
-                text-align: center;
-                margin-bottom: 0px;
+                body{
+                    background:#000000
+                }
+                .chat{
 
-                font-optical-sizing: auto;
-                font-weight: 500;
-                margin-top: 0px;
-                font-size: clamp(4rem, 7vw, 8rem);
-                color: #ffffff;
+                  background:#000000;
+                  margin-left:100px;
+                  margin-right:100px;
+
+                 overflow:scroll;
+
+                }
+                .prompt{
+                    display:flex;
+                    background:#121212;
+                    margin-left:100px;
+                    margin-right:100px;
+                    margin-top:50px;
+                    border-radius:30px;
+                    border:1px solid rgb(59, 59, 59)
+                }
+                .no-frame {
+                    font-size:15px;
+                    resize: none;
+                    width: 100%;
+                    height:100%;
+                    color:white;
+                    padding:20px;
+                    border: none;           /* 枠線を消す */
+                    outline: none;          /* クリック時の青枠を消す（後述のアクセシビリティ注意） */
+                    background: transparent;/* 背景も消したい場合 */
+                    box-shadow: none;       /* 影による枠見えを消す */
+                    appearance: none;       /* 各ブラウザのデフォルト外観を無効化 */
+                    -webkit-appearance: none; /* iOS/Safari対策 */
+                    box-sizing: border-box;
+                }
+                .frank-footer {
+                      text-align: center;
+                      margin-bottom: 0px;
+
+                      font-optical-sizing: auto;
+                      font-weight: 500;
+                      margin-top: 0px;
+                      font-size: clamp(4rem, 7vw, 8rem);
+                      color: #ffffff;
+                  }
+                 .q{
+      margin-top:10px;
+                  margin-left: auto;
+        margin-right: 0;
+        width: fit-content; /* 必要に応じて */
+                  text-align:right;
+                  border-radius:30px;
+                    border:1px solid rgb(59, 59, 59);
+                  background:#121212;
+                  padding:10px;
+                 }
+
+            .logo{
+              width: 1em;
+              height: 1em;
+              vertical-align: middle;
             }
-           .q{
-            text-align:right;
-            border-radius:30px;
-              border:1px solid rgb(59, 59, 59);
-            background:#121212;
-            padding:10px;
-           }
-         
-      .logo{
-        width: 1em;
-        height: 1em;
-        vertical-align: middle;
-      }
-      .send{
+            .send{
 
-        margin:7px;
-        margin-top:50px;
-        width: 40px;
-        height:40px;
-      }
-      .d{
-        
-        text-align:center;
-        width:100%;
-        color:#5e5e5e;
-      }
+              margin:7px;
+              margin-top:50px;
+              width: 40px;
+              height:40px;
+            }
+            .d{
+
+              text-align:center;
+              width:100%;
+              color:#5e5e5e;
+            }
     </style>
   </head>
   <body>
-    <img src="gene.svg" width="40px" height="40px"/>
-    <h1 class="frank-footer" id="frank">Frank<img src="logo.svg" class="logo" /></h1>
+    <img src="gene.svg" width="40px" height="40px" />
+    <h1 class="frank-footer" id="frank">
+      Frank<img src="logo.svg" class="logo" />
+    </h1>
     <div class="chat" id="result"></div>
     <div class="prompt">
       <textarea
@@ -89,49 +95,54 @@
         type="text"
         placeholder="何か知りたいことはありませんか？"
       ></textarea>
-      <img src="send.svg" class="send" id="send"/>
+
+      <img src="send.svg" class="send" id="send" />
     </div>
     <h1></h1>
-    <div class ="d" id="d"
-      >frank
-      にメッセージを送ることで、利用規約およびプライバシーポリシーに同意したことになります。</div
-    >
+
+    <h1></h1>
+    <div class="d" id="d">
+      frank
+      にメッセージを送ることで、利用規約およびプライバシーポリシーに同意したことになります。
+    </div>
     <script>
-    const d = document.getElementById("d");
-    const frank = document.getElementById("frank")
-    async function runAction() {
-      d.style.display = "none";
-      frank.style.display = "none";
-      // 1. 要素を作成
-    const div = document.createElement("div");
+      const d = document.getElementById("d");
+      const frank = document.getElementById("frank");
+      async function runAction() {
+        d.style.display = "none";
+        frank.style.display = "none";
+        // 1. 要素を作成
+        const div = document.createElement("div");
+        const height = window.innerHeight;
+        // 2. 属性や内容を設定
+        div.textContent = document.getElementById("noframe").value;
+        div.className = "q";
+        div.style.color = "#fff";
+        document.getElementById("result").style.height = height - 300 + "px";
+        // 3. DOMに追加
+        document.getElementById("result").appendChild(div);
 
-    // 2. 属性や内容を設定
-    div.textContent = document.getElementById("noframe").value;
-    div.className = "q";
-    div.style.color = "#fff";
-
-    // 3. DOMに追加
-    document.getElementById("result").appendChild(div);
-
-      const prompt = document.getElementById("noframe").value;
-      const res = await fetch("http://localhost:8000/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt })
-      });
-      const data = await res.json();
-      document.getElementById("result").innerText = data.response;
-    }
-    
-    document.getElementById("send").addEventListener("click", runAction);
-
-    // テキストエリアでEnter
-    document.getElementById("noframe").addEventListener("keydown", function(e) {
-      if (e.key === "Enter") {
-        e.preventDefault(); // 改行を防ぎたい場合
-        runAction();
+        const prompt = document.getElementById("noframe").value;
+        const res = await fetch("http://localhost:8000/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt }),
+        });
+        const data = await res.json();
+        document.getElementById("result").innerText = data.response;
       }
-    });
+
+      document.getElementById("send").addEventListener("click", runAction);
+
+      // テキストエリアでEnter
+      document
+        .getElementById("noframe")
+        .addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault(); // 改行を防ぎたい場合
+            runAction();
+          }
+        });
     </script>
   </body>
 </html>
